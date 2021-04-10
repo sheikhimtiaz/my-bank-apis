@@ -36,9 +36,16 @@ public class AccountManager {
     }
     public Account getAccount(String accountId)
     {
-        Account account = accountMapper.findById(accountId);
-        account.setAccountId(accountId);
-        account.setBalances(balanceMapper.findById(accountId));
+        Account account;
+        try{
+            account = accountMapper.findById(accountId);
+            if(account != null){
+                account.setAccountId(accountId);
+                account.setBalances(balanceMapper.findById(accountId));
+            }
+        }catch (Exception e){
+            return null;
+        }
         return account;
     }
 }

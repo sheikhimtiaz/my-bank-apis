@@ -34,9 +34,15 @@ public class AccountController extends BaseController {
     }
 
     @GetMapping("/account")
-    public Account getAccount(@RequestParam(value = "accountId", defaultValue = "World") String accountId) {
+    public ResponseEntity<?> getAccount(@RequestParam(value = "accountId", defaultValue = "World") String accountId) {
         Account account = accountManager.getAccount(accountId);
-        return account;
+        if(account != null) {
+            // publish rabbitmq event => account
+            return getResponse("success", "query successful", account, SC_OK);
+        }
+        else{
+            return getResponse("failed", "query failed", null, SC_SERVER_ERROR);
+        }
     }
 
 }

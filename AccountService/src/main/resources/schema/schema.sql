@@ -3,17 +3,20 @@ CREATE TABLE account
   id            VARCHAR PRIMARY KEY,
   customerId    VARCHAR,
 );
-
 CREATE TABLE balance
 (
     id            SERIAL PRIMARY KEY,
-    name          VARCHAR,
-    customerId    VARCHAR,
+    currency          VARCHAR,
+    accountId    VARCHAR,
+    amount       FLOAT
 );
-
-CREATE TABLE balance
+CREATE TABLE transaction
 (
-    id            INT PRIMARY KEY auto_increment,
-    name          VARCHAR,
-    customerId    VARCHAR,
+    id            VARCHAR PRIMARY KEY,
+    accountId     VARCHAR,
+    direction          VARCHAR,
+    currency     VARCHAR,
+    description     VARCHAR,
+    amount     FLOAT,
+    balanceAfterTransaction     FLOAT,
 );

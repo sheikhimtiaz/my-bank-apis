@@ -8,11 +8,11 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface TransactionMapper {
-    @Insert("INSERT INTO transaction (id, customerId, country) VALUES(#{accountId}, #{customerId}, #{country})")
+    @Insert("INSERT INTO transaction (id, accountId, currency, direction, description, amount, balanceAfterTransaction) " +
+            "VALUES(#{transactionId}, #{accountId}, #{currency}, #{direction}, #{description}, #{amount}, #{balanceAfterTransaction})")
     @Options(useGeneratedKeys = true, keyProperty = "accountId")
     int insert(Transaction transaction);
 
     @Select("SELECT id, customerId FROM transaction WHERE id = #{id}")
-    Transaction findById(long id);
-
+    Transaction findById(String id);
 }

@@ -29,7 +29,13 @@ public class TransactionController extends BaseController {
     }
 
     @GetMapping("/transaction")
-    public Transaction getTransaction(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return new Transaction();
+    public ResponseEntity<?> getTransaction(@RequestParam(value = "transactionId", defaultValue = "World") String transactionId) {
+        Transaction transaction = transactionManager.getTransaction(transactionId);
+        if(transaction != null) {
+            return getResponse("success", "insert successful", transaction, SC_OK);
+        }
+        else{
+            return getResponse("failed", "insert failed", null, SC_SERVER_ERROR);
+        }
     }
 }

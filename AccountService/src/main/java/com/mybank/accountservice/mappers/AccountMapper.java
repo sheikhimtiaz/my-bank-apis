@@ -1,10 +1,7 @@
 package com.mybank.accountservice.mappers;
 
 import com.mybank.accountservice.models.Account;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface AccountMapper {
