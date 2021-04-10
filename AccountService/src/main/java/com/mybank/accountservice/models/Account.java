@@ -1,6 +1,7 @@
 package com.mybank.accountservice.models;
 
 import java.rmi.server.UID;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
@@ -12,8 +13,15 @@ public class Account {
     public Account() {
     }
 
-    public Account(String customerId) {
+    public Account(String accountId, String customerId, String country, List<String> currencies) {
+        this.accountId = accountId;
         this.customerId = customerId;
+        this.country = country;
+        this.balances = new ArrayList<>();
+        for(int i=0;i<currencies.size();i++)
+        {
+            this.balances.add(new Balance(currencies.get(i), 0, accountId));
+        }
     }
 
     public String getAccountId() {

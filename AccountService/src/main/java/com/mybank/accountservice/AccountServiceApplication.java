@@ -1,7 +1,5 @@
 package com.mybank.accountservice;
 
-import com.mybank.accountservice.mappers.AccountMapper;
-import com.mybank.accountservice.models.Account;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

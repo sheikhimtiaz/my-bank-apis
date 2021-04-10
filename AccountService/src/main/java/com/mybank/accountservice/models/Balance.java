@@ -1,14 +1,15 @@
 package com.mybank.accountservice.models;
 
 public class Balance{
+    int id;
     String currency;
-    String amount;
+    double amount;
     String accountId;
 
     public Balance() {
     }
 
-    public Balance(String currency, String amount, String accountId) {
+    public Balance(String currency, double amount, String accountId) {
         this.currency = currency;
         this.amount = amount;
         this.accountId = accountId;
@@ -30,11 +31,11 @@ public class Balance{
         this.currency = currency;
     }
 
-    public String getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 }

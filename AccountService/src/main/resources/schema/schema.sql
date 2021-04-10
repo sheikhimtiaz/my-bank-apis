@@ -1,7 +1,14 @@
 CREATE TABLE account
 (
-  id            INT PRIMARY KEY auto_increment,
+  id            VARCHAR PRIMARY KEY,
   customerId    VARCHAR,
+);
+
+CREATE TABLE balance
+(
+    id            SERIAL PRIMARY KEY,
+    name          VARCHAR,
+    customerId    VARCHAR,
 );
 
 CREATE TABLE balance
