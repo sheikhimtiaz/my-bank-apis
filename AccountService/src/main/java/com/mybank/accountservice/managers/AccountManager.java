@@ -37,6 +37,8 @@ public class AccountManager {
     public Account getAccount(String accountId)
     {
         Account account = accountMapper.findById(accountId);
+        account.setAccountId(accountId);
+        account.setBalances(balanceMapper.findById(accountId));
         return account;
     }
 }
