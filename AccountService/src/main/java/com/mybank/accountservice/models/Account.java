@@ -1,10 +1,11 @@
 package com.mybank.accountservice.models;
 
+import java.io.Serializable;
 import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Account {
+public class Account implements Serializable {
     private String accountId;
     private String customerId;
     private String country;

@@ -7,6 +7,7 @@ import com.mybank.accountservice.dtos.AccountDTO;
 import com.mybank.accountservice.managers.AccountManager;
 import com.mybank.accountservice.mappers.AccountMapper;
 import com.mybank.accountservice.models.Account;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +21,13 @@ public class AccountController extends BaseController {
     @Autowired
     AccountManager accountManager;
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
     @PostMapping("/account")
     public ResponseEntity<?> createAccount(@RequestBody AccountDTO data) {
         Account account = accountManager.createAccount(data);
+        rabbitTemplate.convertAndSend(TOPIC_EXCHANGE, ROUTING_KEY_ACCOUNT, account);
         if(account != null) {
             // publish rabbitmq event => account
             return getResponse("success", "insert successful", account, SC_OK);

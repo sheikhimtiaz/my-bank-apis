@@ -1,6 +1,8 @@
 package com.mybank.accountservice.models;
 
-public class Balance{
+import java.io.Serializable;
+
+public class Balance implements Serializable {
     int id;
     String currency;
     double amount;
