@@ -8,6 +8,8 @@ public class AppConstants {
     static public String DATA = "data";
     static public String TOTAL = "total";
     static public int SC_SERVER_ERROR = 500;
+    static public int SC_BAD_REQUEST = 400;
+    static public int SC_NOT_ACCEPTABLE = 406;
     static public int SC_OK = 200;
 
 }

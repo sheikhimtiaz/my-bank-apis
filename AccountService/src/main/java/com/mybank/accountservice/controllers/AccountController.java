@@ -11,8 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static com.mybank.accountservice.constants.AppConstants.SC_OK;
-import static com.mybank.accountservice.constants.AppConstants.SC_SERVER_ERROR;
+import static com.mybank.accountservice.constants.AppConstants.*;
 
 @RestController
 @RequestMapping("/api")
@@ -29,7 +28,7 @@ public class AccountController extends BaseController {
             return getResponse("success", "insert successful", account, SC_OK);
         }
         else{
-            return getResponse("failed", "insert failed", null, SC_SERVER_ERROR);
+            return getResponse("failed", "insert failed", null, SC_NOT_ACCEPTABLE);
         }
     }
 
@@ -41,7 +40,7 @@ public class AccountController extends BaseController {
             return getResponse("success", "query successful", account, SC_OK);
         }
         else{
-            return getResponse("failed", "query failed", null, SC_SERVER_ERROR);
+            return getResponse("failed", "query failed", null, SC_BAD_REQUEST);
         }
     }
 

@@ -12,7 +12,7 @@ public interface BalanceMapper {
     int insert(Balance balance);
 
     @Update("UPDATE INTO balance (accountId, currency, amount) VALUES(#{accountId}, #{currency}, #{amount}) " +
-            "WHERE id = #{balance.id}")
+            "WHERE id = #{id}")
     int update(Balance balance);
 
     @Select("SELECT id, accountId, amount, currency FROM balance WHERE accountId = #{accountId}")

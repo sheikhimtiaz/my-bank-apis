@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
-public class TransactionManager {
+public class BalanceTransactionManager {
     @Autowired
     AccountMapper accountMapper;
     @Autowired
@@ -36,6 +36,7 @@ public class TransactionManager {
         {
             if(balances.get(i).getCurrency() == transactionDTO.getCurrency()){
                 if(transactionDTO.getDirection().toString() == "IN"){
+                    System.out.println("transaction id : " + balances.get(i).getAccountId());
                     balances.get(i).setAmount(balances.get(i).getAmount() + transactionDTO.getAmount());
                     this.balanceMapper.update(balances.get(i));
                     int inserted = transactionMapper.insert(transaction);
@@ -69,7 +70,7 @@ public class TransactionManager {
             }
         }
         // invalid currency
-        return transaction;
+        return null;
     }
 
     public Transaction getTransaction(String transactionId)
