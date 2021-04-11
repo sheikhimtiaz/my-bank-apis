@@ -8,10 +8,12 @@ import com.mybank.accountservice.models.Account;
 import com.mybank.accountservice.models.Balance;
 import com.mybank.accountservice.models.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
 
+@Component
 public class TransactionManager {
     @Autowired
     AccountMapper accountMapper;
