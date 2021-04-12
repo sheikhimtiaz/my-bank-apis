@@ -25,7 +25,7 @@ public class TransactionController extends BaseController {
         System.out.println("test");
         Transaction transaction = balanceTransactionManager.createTransaction(data);
         if(transaction != null) {
-//            rabbitTemplate.convertAndSend(TOPIC_EXCHANGE, ROUTING_KEY_TRANSACTION, transaction);
+            rabbitTemplate.convertAndSend(TOPIC_EXCHANGE, ROUTING_KEY_TRANSACTION, transaction);
             return getResponse("success", "insert successful", transaction, SC_OK);
         }
         else{
