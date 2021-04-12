@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Select;
 public interface TransactionMapper {
     @Insert("INSERT INTO transaction (id, accountId, currency, direction, description, amount, balanceAfterTransaction) " +
             "VALUES(#{transactionId}, #{accountId}, #{currency}, #{direction}, #{description}, #{amount}, #{balanceAfterTransaction})")
-    @Options(useGeneratedKeys = true, keyProperty = "accountId")
+    @Options(useGeneratedKeys = true, keyProperty = "transactionId")
     int insert(Transaction transaction);
 
     @Select("SELECT id, customerId FROM transaction WHERE id = #{id}")

@@ -25,17 +25,16 @@ public class BalanceTransactionManager {
     public Transaction createTransaction(TransactionDTO transactionDTO)
     {
         Account account = accountMapper.findById(transactionDTO.getAccountId());
-        Transaction transaction = new Transaction(transactionDTO);
-        transaction.setTransactionId(UUID.randomUUID().toString());
-        if(account != null){
-            account.setAccountId(transactionDTO.getAccountId());
-            account.setBalances(balanceMapper.findById(transactionDTO.getAccountId()));
+        if(account == null){
+            return null;
         }
-        List<Balance> balances = account.getBalances();
+        Transaction transaction = new Transaction(UUID.randomUUID().toString(), transactionDTO.getAccountId(),
+                transactionDTO.getCurrency(), transactionDTO.getDirection(), transactionDTO.getDescription(), transactionDTO.getAmount());
+        List<Balance> balances = balanceMapper.findById(transactionDTO.getAccountId());
         for(int i=0;i<balances.size();i++)
         {
             if(balances.get(i).getCurrency().equalsIgnoreCase(transactionDTO.getCurrency())){
-                if(transactionDTO.getDirection().toString().equalsIgnoreCase("IN")){
+                if(transactionDTO.getDirection().equalsIgnoreCase("IN")){
                     balances.get(i).setAmount(balances.get(i).getAmount() + transactionDTO.getAmount());
                     this.balanceMapper.update(balances.get(i));
                     transaction.setBalanceAfterTransaction(balances.get(i).getAmount());
