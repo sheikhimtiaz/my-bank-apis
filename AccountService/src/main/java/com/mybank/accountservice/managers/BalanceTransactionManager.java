@@ -75,12 +75,12 @@ public class BalanceTransactionManager {
 
     public Transaction getTransaction(String transactionId)
     {
-        Transaction transaction = transactionMapper.findById(transactionId);;
-        if(transaction != null) {
-            return transaction;
-        }
-        else{
+        Transaction transaction;
+        try{
+            transaction = transactionMapper.findById(transactionId);
+        }catch (Exception e){
             return null;
         }
+        return transaction;
     }
 }
