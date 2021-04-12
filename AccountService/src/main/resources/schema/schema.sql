@@ -15,7 +15,9 @@ CREATE TABLE account
 (
   id            VARCHAR PRIMARY KEY,
   customerId    VARCHAR,
+  account       VARCHAR
 );
+
 CREATE TABLE balance
 (
     id            SERIAL PRIMARY KEY,
