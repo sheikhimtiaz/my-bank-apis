@@ -1,6 +1,18 @@
 package com.mybank.ReportingService.models;
 
-public class Transaction {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.io.Serializable;
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Transaction implements Serializable {
     private String accountId;
     private String transactionId;
     private String currency;
@@ -9,17 +21,16 @@ public class Transaction {
     private double amount;
     private double balanceAfterTransaction;
 
-    public Transaction() {
+    public Transaction(String id, String accountId, String currency, String direction, String description,
+                       double amount) {
+        this.transactionId = id;
+        this.accountId = accountId;
+        this.amount = amount;
+        this.currency = currency;
+        this.direction = direction;
+        this.description = description;
+        this.balanceAfterTransaction = 0.0;
     }
-
-//    public Transaction(String accountId, String currency, String, String direction, String description, double amount) {
-//        this.accountId = accountId;
-//        this.amount = amount;
-//        this.currency = currency;
-//        this.direction = direction;
-//        this.description = description;
-//        this.balanceAfterTransaction = 0.0;
-//    }
 
     public String getAccountId() {
         return accountId;

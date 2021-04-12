@@ -1,15 +1,23 @@
 package com.mybank.ReportingService.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.io.Serializable;
 
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Balance implements Serializable {
     int id;
     String currency;
     double amount;
     String accountId;
 
-    public Balance() {
-    }
 
     public Balance(String currency, double amount, String accountId) {
         this.currency = currency;

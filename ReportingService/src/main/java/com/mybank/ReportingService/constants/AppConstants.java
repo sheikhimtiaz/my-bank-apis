@@ -11,8 +11,8 @@ public class AppConstants {
     static public int SC_BAD_REQUEST = 400;
     static public int SC_NOT_ACCEPTABLE = 406;
     static public int SC_OK = 200;
-    static public String TOPIC_EXCHANGE_ACCOUNT = "bank-user-account";
-    static public String TOPIC_EXCHANGE_TRANSACTION = "bank-user-transaction";
+    static public final String QUEUE_ACCOUNT = "bank-user-account";
+    static public final String QUEUE_TRANSACTION = "bank-user-transaction";
     static public String TOPIC_EXCHANGE = "bank-user";
     static public String ROUTING_KEY_ACCOUNT = "account";
     static public String ROUTING_KEY_TRANSACTION = "transaction";

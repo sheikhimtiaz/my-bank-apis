@@ -1,28 +1,24 @@
 package com.mybank.ReportingService.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Account implements Serializable {
     private String accountId;
     private String customerId;
     private String country;
     private List<Balance> balances;
 
-    public Account() {
-    }
-
-    public Account(String accountId, String customerId, String country, List<String> currencies) {
-        this.accountId = accountId;
-        this.customerId = customerId;
-        this.country = country;
-        this.balances = new ArrayList<>();
-        for(int i=0;i<currencies.size();i++)
-        {
-            this.balances.add(new Balance(currencies.get(i), 0, accountId));
-        }
-    }
 
     public String getAccountId() {
         return accountId;
