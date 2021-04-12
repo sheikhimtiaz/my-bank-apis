@@ -22,9 +22,10 @@ public class TransactionController extends BaseController {
 
     @PostMapping("/transaction")
     public ResponseEntity<?> createTransaction(@RequestBody TransactionDTO data) {
+        System.out.println("test");
         Transaction transaction = balanceTransactionManager.createTransaction(data);
-        rabbitTemplate.convertAndSend(TOPIC_EXCHANGE, ROUTING_KEY_TRANSACTION, transaction);
         if(transaction != null) {
+//            rabbitTemplate.convertAndSend(TOPIC_EXCHANGE, ROUTING_KEY_TRANSACTION, transaction);
             return getResponse("success", "insert successful", transaction, SC_OK);
         }
         else{

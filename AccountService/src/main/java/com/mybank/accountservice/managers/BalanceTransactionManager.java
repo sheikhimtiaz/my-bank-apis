@@ -34,11 +34,11 @@ public class BalanceTransactionManager {
         List<Balance> balances = account.getBalances();
         for(int i=0;i<balances.size();i++)
         {
-            if(balances.get(i).getCurrency() == transactionDTO.getCurrency()){
-                if(transactionDTO.getDirection().toString() == "IN"){
-                    System.out.println("transaction id : " + balances.get(i).getAccountId());
+            if(balances.get(i).getCurrency().equalsIgnoreCase(transactionDTO.getCurrency())){
+                if(transactionDTO.getDirection().toString().equalsIgnoreCase("IN")){
                     balances.get(i).setAmount(balances.get(i).getAmount() + transactionDTO.getAmount());
                     this.balanceMapper.update(balances.get(i));
+                    transaction.setBalanceAfterTransaction(balances.get(i).getAmount());
                     int inserted = transactionMapper.insert(transaction);
                     if(inserted == 1) {
                         return transaction;
@@ -47,12 +47,13 @@ public class BalanceTransactionManager {
                         return null;
                     }
                 }
-                else if(balances.get(i).getAmount() <= transactionDTO.getAmount()){
+                else if(balances.get(i).getAmount() >= transactionDTO.getAmount()){
                     // perform transaction
                     // refactor to this.performTransaction()
 
                     balances.get(i).setAmount(balances.get(i).getAmount() - transactionDTO.getAmount());
                     this.balanceMapper.update(balances.get(i));
+                    transaction.setBalanceAfterTransaction(balances.get(i).getAmount());
                     // insert transaction to the table
                     // refactor to this.insertTransaction()
 

@@ -1,10 +1,6 @@
-package com.mybank.accountservice.models;
+package com.mybank.ReportingService.models;
 
-import com.mybank.accountservice.dtos.TransactionDTO;
-
-import java.io.Serializable;
-
-public class Transaction implements Serializable {
+public class Transaction {
     private String accountId;
     private String transactionId;
     private String currency;
@@ -16,13 +12,14 @@ public class Transaction implements Serializable {
     public Transaction() {
     }
 
-    public Transaction(TransactionDTO transactionDTO) {
-        this.accountId = transactionDTO.getAccountId();
-        this.amount = transactionDTO.getAmount();
-        this.currency = transactionDTO.getCurrency();
-        this.direction = transactionDTO.getDirection();
-        this.description = transactionDTO.getDescription();
-    }
+//    public Transaction(String accountId, String currency, String, String direction, String description, double amount) {
+//        this.accountId = accountId;
+//        this.amount = amount;
+//        this.currency = currency;
+//        this.direction = direction;
+//        this.description = description;
+//        this.balanceAfterTransaction = 0.0;
+//    }
 
     public String getAccountId() {
         return accountId;

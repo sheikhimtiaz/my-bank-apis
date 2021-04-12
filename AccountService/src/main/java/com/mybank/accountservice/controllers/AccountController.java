@@ -27,9 +27,8 @@ public class AccountController extends BaseController {
     @PostMapping("/account")
     public ResponseEntity<?> createAccount(@RequestBody AccountDTO data) {
         Account account = accountManager.createAccount(data);
-        rabbitTemplate.convertAndSend(TOPIC_EXCHANGE, ROUTING_KEY_ACCOUNT, account);
         if(account != null) {
-            // publish rabbitmq event => account
+            rabbitTemplate.convertAndSend(TOPIC_EXCHANGE, ROUTING_KEY_ACCOUNT, account);
             return getResponse("success", "insert successful", account, SC_OK);
         }
         else{

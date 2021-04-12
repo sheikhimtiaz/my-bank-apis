@@ -3,7 +3,7 @@ package com.mybank.accountservice.dtos;
 public class TransactionDTO {
     private String accountId;
     private double amount;
-    private String  currency;
+    private String currency;
     private String direction;
     private String description;
 
