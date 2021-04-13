@@ -1,5 +1,5 @@
 # Software Engineer Test Assignment 
- MyBank - Account, reporting
+ MyBank - AccountService, ReportingService
 
 Things to be checked before starting the application:
 
@@ -18,12 +18,15 @@ Things to be checked before starting the application:
 - RabbitMQ
 - Swagger 2
 -------------------
-### How to compile and install:
-it is a maven project , so just clean and install and should be ready ! 
+### Getting Started
+It is a gradle project , so open the project in your preferable ide and run from there. The project should run with JDK 11 and two service will run on separate ports by default, shouldn't be any problem. If you face any problem running the application, please contact me.
+
+-------------------
+### Testing
+
+Once you run the spint boot application locally from the main class, you can test the rest API on the browser via SWAGGER http://localhost:8080/swagger-ui.html#/
+
 ```sh
-mvn clean install 
+http://localhost:8080/swagger-ui.html#/
 ```
 -------------------
-### How to run the locally :
-
-Once you run the spint boot application locally from the main class, you can test the rest API on the browser via SWAGGER
