@@ -16,5 +16,7 @@ public class AppConstants {
     static public String TOPIC_EXCHANGE = "bank-user";
     static public String ROUTING_KEY_ACCOUNT = "account";
     static public String ROUTING_KEY_TRANSACTION = "transaction";
+    static public String DIRECTION_IN = "IN";
+    static public String DIRECTION_OUT = "OUT";
 
 }
