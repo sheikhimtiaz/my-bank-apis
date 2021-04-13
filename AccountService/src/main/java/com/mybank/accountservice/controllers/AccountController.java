@@ -39,7 +39,7 @@ public class AccountController extends BaseController {
             return getResponse("success", "insert successful", account, SC_OK);
         }
         else{
-            return getResponse("failed", "insert failed", null, SC_NOT_ACCEPTABLE);
+            return getResponse("error", "insert failed", null, SC_NOT_ACCEPTABLE);
         }
     }
 
@@ -51,7 +51,7 @@ public class AccountController extends BaseController {
             return getResponse("success", "query successful", account, SC_OK);
         }
         else{
-            return getResponse("failed", "query failed", null, SC_BAD_REQUEST);
+            return getResponse("error", "query failed", null, SC_BAD_REQUEST);
         }
     }
 

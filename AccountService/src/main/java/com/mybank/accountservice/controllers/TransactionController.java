@@ -35,7 +35,7 @@ public class TransactionController extends BaseController {
             return getResponse("success", "insert successful", transaction, SC_OK);
         }
         else{
-            return getResponse("failed", "insert failed", null, SC_NOT_ACCEPTABLE);
+            return getResponse("error", "insert failed", null, SC_NOT_ACCEPTABLE);
         }
     }
 
@@ -46,7 +46,7 @@ public class TransactionController extends BaseController {
             return getResponse("success", "insert successful", transaction, SC_OK);
         }
         else{
-            return getResponse("failed", "insert failed", null, SC_BAD_REQUEST);
+            return getResponse("error", "insert failed", null, SC_BAD_REQUEST);
         }
     }
 }

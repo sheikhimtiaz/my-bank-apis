@@ -28,7 +28,7 @@ public class MessageListener {
             accountManager.createAccount(account);
             System.out.println(account);
         } catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
             return;
         }
     }
@@ -39,7 +39,7 @@ public class MessageListener {
             balanceTransactionManager.createTransaction(transaction);
             System.out.println(transaction);
         } catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
             return;
         }
     }

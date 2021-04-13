@@ -1,10 +1,21 @@
 package com.mybank.accountservice.dtos;
 
+import javax.validation.constraints.NotNull;
+
 public class TransactionDTO {
+    @NotNull(message = "accountId cannot be null")
     private String accountId;
+
+    @NotNull(message = "amount cannot be null")
     private double amount;
+
+    @NotNull(message = "currency cannot be null")
     private String currency;
+
+    @NotNull(message = "direction cannot be null")
     private String direction;
+
+    @NotNull(message = "description cannot be null")
     private String description;
 
     public String getAccountId() {

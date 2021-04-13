@@ -1,22 +1,9 @@
--- CREATE TABLE  test
--- (
---     username varchar(45) NOT NULL PRIMARY KEY ,
---     password varchar(450) NOT NULL,
---     enabled integer NOT NULL DEFAULT '1'
--- )
-
-CREATE TABLE [ IF NOT EXISTS ] IF NOT EXISTS
-(
-    id VARCHAR ,
-);
-
-
 CREATE TABLE account
 (
-  id            VARCHAR PRIMARY KEY,
-  customerId    VARCHAR,
-  account       VARCHAR
-);
+    id            VARCHAR PRIMARY KEY,
+    customerId    VARCHAR,
+    country       VARCHAR
+)
 
 CREATE TABLE balance
 (

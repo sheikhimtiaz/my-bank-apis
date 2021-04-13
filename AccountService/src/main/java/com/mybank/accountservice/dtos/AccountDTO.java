@@ -4,9 +4,14 @@ import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
+
 public class AccountDTO {
+    @NotNull(message = "customerId cannot be null")
     private String customerId;
+
+    @NotNull(message = "country cannot be null")
     private String country;
+
     private List<String> currencies;
 
     public String getCustomerId() {
