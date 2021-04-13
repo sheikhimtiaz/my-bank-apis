@@ -2,6 +2,7 @@ package com.mybank.accountservice.constants;
 
 public class AppConstants {
     static public String ERROR = "error";
+    static public String SUCCESS = "success";
     static public String STATUS = "status";
     static public String STATUS_TYPE = "statusType";
     static public String MESSAGE = "message";
@@ -16,5 +17,8 @@ public class AppConstants {
     static public String TOPIC_EXCHANGE = "bank-user";
     static public String ROUTING_KEY_ACCOUNT = "account";
     static public String ROUTING_KEY_TRANSACTION = "transaction";
+    static public String DIRECTION_IN = "IN";
+    static public String DIRECTION_OUT = "OUT";
+    static public String[] ALLOWED_CURRENCY = new String[]{"EUR", "SEK", "GBP", "USD"};
 
 }
