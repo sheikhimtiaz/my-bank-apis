@@ -9,8 +9,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mybank.accountservice.dtos.AccountDTO;
 import com.mybank.accountservice.managers.AccountManager;
 import com.mybank.accountservice.models.Account;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +34,8 @@ public class AccountController extends BaseController {
     private Validator validator;
 
     @PostMapping("/account")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation(value = "Create a user.", notes = "Returns the user info.")
     public ResponseEntity<?> createAccount(@Valid @RequestBody AccountDTO data) {
         Account account = accountManager.createAccount(data);
         if(account != null) {
@@ -48,6 +52,8 @@ public class AccountController extends BaseController {
     }
 
     @GetMapping("/account")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Get user info by userId", notes = "Returns the user info.")
     public ResponseEntity<?> getAccount(@RequestParam(value = "accountId") String accountId) {
         Account account = accountManager.getAccount(accountId);
         if(account != null) {

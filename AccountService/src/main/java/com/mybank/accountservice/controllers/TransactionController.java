@@ -5,8 +5,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mybank.accountservice.dtos.TransactionDTO;
 import com.mybank.accountservice.managers.BalanceTransactionManager;
 import com.mybank.accountservice.models.Transaction;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +28,8 @@ public class TransactionController extends BaseController {
     ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping("/transaction")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation(value = "Create a transaction.", notes = "Returns the user info.")
     public ResponseEntity<?> createTransaction(@Valid @RequestBody TransactionDTO data) {
         Transaction transaction = balanceTransactionManager.createTransaction(data);
         if(transaction != null) {
@@ -42,6 +46,8 @@ public class TransactionController extends BaseController {
     }
 
     @GetMapping("/transaction")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Get transaction info by transactionId", notes = "Returns the transaction info.")
     public ResponseEntity<?> getTransaction(@RequestParam(value = "transactionId") String transactionId) {
         Transaction transaction = balanceTransactionManager.getTransaction(transactionId);
         if(transaction != null) {
