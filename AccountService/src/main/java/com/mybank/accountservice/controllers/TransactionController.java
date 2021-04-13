@@ -1,5 +1,7 @@
 package com.mybank.accountservice.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mybank.accountservice.dtos.TransactionDTO;
 import com.mybank.accountservice.managers.BalanceTransactionManager;
 import com.mybank.accountservice.models.Transaction;
@@ -19,12 +21,17 @@ public class TransactionController extends BaseController {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping("/transaction")
     public ResponseEntity<?> createTransaction(@RequestBody TransactionDTO data) {
         Transaction transaction = balanceTransactionManager.createTransaction(data);
         if(transaction != null) {
-            rabbitTemplate.convertAndSend(TOPIC_EXCHANGE, ROUTING_KEY_TRANSACTION, transaction);
+            try {
+                rabbitTemplate.convertAndSend(TOPIC_EXCHANGE, ROUTING_KEY_TRANSACTION, objectMapper.writeValueAsString(transaction));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
             return getResponse("success", "insert successful", transaction, SC_OK);
         }
         else{

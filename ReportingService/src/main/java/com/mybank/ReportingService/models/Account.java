@@ -18,37 +18,4 @@ public class Account implements Serializable {
     private String customerId;
     private String country;
     private List<Balance> balances;
-
-
-    public String getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public List<Balance> getBalances() {
-        return balances;
-    }
-
-    public void setBalances(List<Balance> balances) {
-        this.balances = balances;
-    }
 }

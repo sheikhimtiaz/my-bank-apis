@@ -3,6 +3,8 @@ package com.mybank.accountservice.controllers;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mybank.accountservice.dtos.AccountDTO;
 import com.mybank.accountservice.managers.AccountManager;
 import com.mybank.accountservice.mappers.AccountMapper;
@@ -23,12 +25,17 @@ public class AccountController extends BaseController {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping("/account")
     public ResponseEntity<?> createAccount(@RequestBody AccountDTO data) {
         Account account = accountManager.createAccount(data);
         if(account != null) {
-            rabbitTemplate.convertAndSend(TOPIC_EXCHANGE, ROUTING_KEY_ACCOUNT, account);
+            try {
+                rabbitTemplate.convertAndSend(TOPIC_EXCHANGE, ROUTING_KEY_ACCOUNT, objectMapper.writeValueAsString(account));
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
             return getResponse("success", "insert successful", account, SC_OK);
         }
         else{
