@@ -5,7 +5,7 @@ Things to be checked before starting the application:
 
 * Update the application.properties file with your postgres database name, username and password
 * Create three tables with the commands from schema.sql
-* Make sure that you have a rabbitmq server running and configured in application.properties (default is localhost:5671)
+* Make sure that you have a rabbitmq server running and configured in application.properties (default is localhost:5672). RabbitMQ should have a direct exchange named “bank-user” with routing-key “account” to the queue “bank-user-account” and routing-key “transaction” to the queue “bank-user-transaction”.
 
 -------------------
 ### Tech stack:
