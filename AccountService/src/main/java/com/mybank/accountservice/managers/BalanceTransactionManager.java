@@ -19,12 +19,18 @@ import static com.mybank.accountservice.constants.AppConstants.*;
 
 @Component
 public class BalanceTransactionManager {
-    @Autowired
     AccountMapper accountMapper;
-    @Autowired
     BalanceMapper balanceMapper;
-    @Autowired
     TransactionMapper transactionMapper;
+
+    BalanceTransactionManager(AccountMapper accountMapper,
+                              BalanceMapper balanceMapper,
+                              TransactionMapper transactionMapper){
+        this.accountMapper = accountMapper;
+        this.balanceMapper = balanceMapper;
+        this.transactionMapper = transactionMapper;
+    }
+
 
     private void validateTransactionDto (TransactionDTO transactionDTO){
         if(transactionDTO.getAmount() < 0){

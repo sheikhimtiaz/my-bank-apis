@@ -16,10 +16,14 @@ import static com.mybank.accountservice.constants.AppConstants.*;
 
 @Component
 public class AccountManager {
-    @Autowired
     AccountMapper accountMapper;
-    @Autowired
     BalanceMapper balanceMapper;
+
+    AccountManager(AccountMapper accountMapper,
+                   BalanceMapper balanceMapper){
+        this.accountMapper = accountMapper;
+        this.balanceMapper = balanceMapper;
+    }
 
     private void validateAccount(AccountDTO accountDTO){
         List<String> currencyList = Arrays.asList(ALLOWED_CURRENCY);

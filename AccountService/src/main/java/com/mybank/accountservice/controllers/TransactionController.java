@@ -7,7 +7,6 @@ import com.mybank.accountservice.managers.BalanceTransactionManager;
 import com.mybank.accountservice.models.Transaction;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +19,17 @@ import static com.mybank.accountservice.constants.AppConstants.*;
 @RequestMapping("/api")
 public class TransactionController extends BaseController {
 
-    @Autowired
     BalanceTransactionManager balanceTransactionManager;
 
-    @Autowired
     private RabbitTemplate rabbitTemplate;
     ObjectMapper objectMapper = new ObjectMapper();
+
+    TransactionController(BalanceTransactionManager balanceTransactionManager,
+                          RabbitTemplate rabbitTemplate){
+        this.rabbitTemplate = rabbitTemplate;
+        this.balanceTransactionManager = balanceTransactionManager;
+    }
+
 
     @PostMapping("/transaction")
     @ResponseStatus(HttpStatus.CREATED)

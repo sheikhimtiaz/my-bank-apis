@@ -8,10 +8,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mybank.accountservice.dtos.AccountDTO;
 import com.mybank.accountservice.managers.AccountManager;
+import com.mybank.accountservice.managers.BalanceTransactionManager;
 import com.mybank.accountservice.models.Account;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +25,17 @@ import static com.mybank.accountservice.constants.AppConstants.*;
 @RequestMapping("/api")
 public class AccountController extends BaseController {
 
-    @Autowired
     AccountManager accountManager;
 
-    @Autowired
     private RabbitTemplate rabbitTemplate;
     ObjectMapper objectMapper = new ObjectMapper();
     private Validator validator;
+
+    AccountController(AccountManager accountManager,
+                      RabbitTemplate rabbitTemplate){
+        this.rabbitTemplate = rabbitTemplate;
+        this.accountManager = accountManager;
+    }
 
     @PostMapping("/account")
     @ResponseStatus(HttpStatus.CREATED)
