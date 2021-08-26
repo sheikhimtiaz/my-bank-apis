@@ -1,4 +1,4 @@
-# Software Engineer Test Assignment 
+# Spring pet project 
  MyBank - AccountService, ReportingService
 
 Things to be checked before starting the application:
@@ -8,7 +8,7 @@ Things to be checked before starting the application:
 * Make sure that you have a rabbitmq server running and configured in application.properties (default is localhost:5672). RabbitMQ should have a direct exchange named “bank-user” with routing-key “account” to the queue “bank-user-account” and routing-key “transaction” to the queue “bank-user-transaction”.
 
 -------------------
-### Tech stack:
+### Tech stack that I tried:
 - JDK 11
 - Spring Boot
 - Spring REST 
